@@ -58,4 +58,10 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
     public JavaParser() {
         this(new ParserConfiguration());
     }
+
+ public JavaParser(ParserConfiguration configuration) {
+        this.configuration = configuration;
+        commentsInserter = new CommentsInserter(configure);
+    }
+
 }
