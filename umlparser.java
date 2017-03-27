@@ -61,7 +61,7 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
 
  public JavaParser(ParserConfiguration configuration) {
         this.configuration = configuration;
-        commentsInserter = new CommentsInserter(configure);
+        commentsInserter = new CommentsInserter(configuration);
     }
 
 }
