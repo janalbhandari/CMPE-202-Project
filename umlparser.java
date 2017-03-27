@@ -56,6 +56,6 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
      * Creating an instance will reduce setup time between parsing files.
      */
     public JavaParser() {
-        this(new ParserConfiguration());
+        this(new ParserConfigur());
     }
 }
