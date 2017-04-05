@@ -2,17 +2,9 @@
 
 package com.github.javaparser;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.ImportDeclaration;
-import com.github.javaparser.ast.expr.AnnotationExpr;
-import com.github.javaparser.ast.expr.Expression;
-import com.github.javaparser.ast.expr.VariableDeclarationExpr;
-
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.stmt.ExplicitConstructorInvocationStmt;
-import com.github.javaparser.ast.stmt.Statement;
-import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.github.javaparser.javadoc.Javadoc;
+import japa.parser.ast.body.ClassOrInterfaceDeclaration;
+import japa.parser.ast.body.FieldDeclaration;
+import japa.parser.ast.body.MethodDeclaration;
 
 import java.io.*;
 import java.nio.charset.Charset;
