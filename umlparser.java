@@ -16,6 +16,22 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
 
  public class umlparser {
 		
-  inputfilepath = "/Users//Users/janalbhandari/Documents/CMPE-202/Project/umlparser/src";
+	 
+	public void AddClassNamestoList(File currentFile)
+	{
+		ArrayList<String> className = new ArrayList<String>();
+		if (currentFile.isFile() && currentFile.getName().endsWith(".class")) {
+			String nameOfClass;
+			nameOfClass = currentFile.getName();
+			nameOfClass = nameOfClass
+					.substring(0, nameOfClass.lastIndexOf('.'));
+			className.add(nameOfClass);
+		}
+		for (String temp : className) {
+			GetInterfaces(temp);
+		}
+		GetAssociations(className);
+	}
+
   
  }
