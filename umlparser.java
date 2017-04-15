@@ -18,7 +18,13 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
 		
 	 
 	 
-	 
+	 for (File file : files) {
+		    if (file.isFile() && file.getName().endsWith(".java")) {
+		    	results.add(file.getName());
+		        System.out.println("Display : " + file.getName());
+		        
+		    }
+		 
 	/*public void AddClassNamestoList(File currentFile)
 	{
 		ArrayList<String> className = new ArrayList<String>();
