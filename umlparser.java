@@ -17,7 +17,9 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
  public class umlparser {
 		
 	 
-	public void AddClassNamestoList(File currentFile)
+	 
+	 
+	/*public void AddClassNamestoList(File currentFile)
 	{
 		ArrayList<String> className = new ArrayList<String>();
 		if (currentFile.isFile() && currentFile.getName().endsWith(".class")) {
@@ -31,7 +33,7 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
 			GetInterfaces(temp);
 		}
 		GetAssociations(className);
-	}
+	}*/
 
   
  }
