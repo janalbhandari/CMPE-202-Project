@@ -16,7 +16,7 @@ import static com.github.javaparser.utils.Utils.assertNotNull;
 
  public class umlparser {
 		
-	 
+	 File file = "/Users/janalbhandari/Documents/202/My Project/Test Cases/uml-parser-test-1/";
 	 
 	 for (File file : files) {
 		    if (file.isFile() && file.getName().endsWith(".java")) {
