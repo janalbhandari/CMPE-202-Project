@@ -48,9 +48,11 @@ public class Parser {
 					
 					try {
 						cUnit = JavaParser.parse(f);
-						
-						
-						
+
+						fd.visit(cUnit, null);
+						cv.visit(cUnit, null);
+						mv.visit(cUnit, null);
+						ci.visit(cUnit, null);
 						
 					} catch (Exception e) {
 						e.printStackTrace();
