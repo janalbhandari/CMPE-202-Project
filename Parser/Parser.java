@@ -1,45 +1,69 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.CompilationUnit;
 
-package com.github.javaparser;
+public class Parser {
+	static String className;
+	static ArrayList<String> classNames = new ArrayList<String>();	
+	static StringBuffer UMLPlant = new StringBuffer();
+	static CompilationUnit cUnit;
+	static String pu;
+	static File sourceFiles = new File("/Users/janalbhandari/Documents/202/My Project/Test Cases/uml-parser-test-1");
 
-import japa.parser.ast.body.ClassOrInterfaceDeclaration;
-import japa.parser.ast.body.FieldDeclaration;
-import japa.parser.ast.body.MethodDeclaration;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Path;
-
-import static com.github.javaparser.ParseStart.*;
-import static com.github.javaparser.Providers.*;
-import static com.github.javaparser.utils.Utils.assertNotNull;
-
- public class umlparser {
+	
+	
+    
+    public static void main(String[] args) throws IOException, ParseException{
+        // TODO Auto-generated method stub
+        
+		//String outputFile = "output.png";
+		//File sourceFiles = new File("/Users/janalbhandari/Documents/202/My Project/Test Cases/uml-parser-test-4/ConcreteSubject.java");
 		
-	 File file = "/Users/janalbhandari/Documents/202/My Project/Test Cases/uml-parser-test-1/";
-	 
-	 for (File file : files) {
-		    if (file.isFile() && file.getName().endsWith(".java")) {
-		    	results.add(file.getName());
-		        System.out.println("Display : " + file.getName());
-		        
-		    }
-		 
-	/*public void AddClassNamestoList(File currentFile)
-	{
-		ArrayList<String> className = new ArrayList<String>();
-		if (currentFile.isFile() && currentFile.getName().endsWith(".class")) {
-			String nameOfClass;
-			nameOfClass = currentFile.getName();
-			nameOfClass = nameOfClass
-					.substring(0, nameOfClass.lastIndexOf('.'));
-			className.add(nameOfClass);
-		}
-		for (String temp : className) {
-			GetInterfaces(temp);
-		}
-		GetAssociations(className);
-	}*/
-
+		
+		//cUnit = JavaParser.parse(sourceFiles);
+		parseJava(sourceFiles);
+	
+  }
   
- }
+ 
+	private static void parseJava(File file)  {
+		// TODO Auto-generated method stub
+		File[] files = file.listFiles();
+		MethodVisitor mv = new MethodVisitor();
+		ConstructorVisitor cv = new ConstructorVisitor();
+		ClassOrInterfaceDeclaration ci = new ClassOrInterfaceDeclaration();
+		FieldDeclaration fd = new FieldDeclaration();
+		//UMLPlant.append("@startuml");
+		
+		for(File f: files){
+				if(f.isFile() && f.getName().contains(".java")){
+					System.out.println("___");
+					className = f.getName();
+					System.out.println(className);
+					
+					
+					try {
+						cUnit = JavaParser.parse(f);
+						
+						
+						
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}
+				
+		}
+		//UMLPlant.append("@enduml");
+		
+	}
+	
+		
+	
+}
+
