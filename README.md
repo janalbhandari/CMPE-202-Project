@@ -7,9 +7,8 @@ Java Grammar Parser - Java Parser
 UML Diagram Generators - PlantUML
 
 # Pre-requisites 
-Java should be installed on your machine.
-GRAPHVIZ to be installed prior to running the java application.
-Maven to be installed.
+Java, Maven, GRAPHVIZ  should be installed on your machine.
+
 
 # Steps to run the application
 
