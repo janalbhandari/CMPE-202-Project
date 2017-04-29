@@ -17,7 +17,9 @@ import net.sourceforge.plantuml.SourceStringReader;
 
 public class Parser {
 	static String className;
+	static String methodName;
 	static ArrayList<String> classNames = new ArrayList<String>();	
+	static ArrayList<String> methoNames = new ArrayList<String>();	
 	static StringBuffer UMLPlant = new StringBuffer();
 	static CompilationUnit cUnit;
 	//static File sourceFiles = new File("/Users/janalbhandari/Documents/202/My_Project/Test_Cases/uml-parser-test-5/");
@@ -33,9 +35,10 @@ public class Parser {
  public static void main(String[] args) throws IOException, ParseException{
 	 // TODO Auto-generated method stub
 	 
-	 	choice = args[0];
-	 	source = args[1];
-	 	outputFileName = args[2];
+	 	source = args[0];
+	 	outputFileName = args[1];
+	 	
+	 	
 	 	
 	 	/*if(choice == "class")
 	 	{
@@ -51,20 +54,23 @@ public class Parser {
 		System.out.println("\n\n");
 	 	
 		appendToClassString += "@startuml\n";
-		if(args[0].equals("class"))
+		
+		/*if(args[0].equals("class"))
 	 	{
 			
 	 		System.out.println("Generating Class Diagram...\n");
 	 		parseJavaClass(source, outputFileName);
-	 	}
+	 	}*/
 		
+		System.out.println("Generating Class Diagram...\n");
+ 		parseJavaClass(source, outputFileName);
 		
 		appendToClassString += umlString;
 		
 		//System.out.println(appendToClassString);
 		appendToClassString += "@enduml";
 		
-		ImageGenerator(outputFileName);
+		//ImageGenerator(outputFileName);
 		System.out.println("\n\n");
 		
 		
@@ -110,13 +116,15 @@ public class Parser {
 		VisitConstructor cv = new VisitConstructor();
 		VisitClasses ci = new VisitClasses();
 		VisitFields fd = new VisitFields();
+		GetDependency gd = new GetDependency();
+	 	
 		
 		
 		
 		for(File f: files){
 				if(f.isFile() && f.getName().contains(".java")){
 					
-					className = f.getName();
+					className = f.getName().substring(0, f.getName().length() - 5);
 					classNames.add(className);
 					//umlString +=className + "\n";
 					
@@ -128,17 +136,19 @@ public class Parser {
 					
 					try {
 						cUnit = JavaParser.parse(f);
+						cName = f.getName().substring(0, f.getName().length() - 5);
 						
+						gd.visit(cUnit,null);
 						
 						ci.visit(cUnit, null);
 						
-						cName = f.getName().substring(0, f.getName().length() - 5);
 						//umlString += "Class " + cName + "{\n";
 						fd.visit(cUnit, null);
 						
 						cv.visit(cUnit, null);
 						
 						mv.visit(cUnit, null);
+						
 						
 					} catch (Exception e) {
 						e.printStackTrace();
