@@ -24,4 +24,6 @@ Java, Maven, GRAPHVIZ  should be installed on your machine.
 
 • Output file's path will be displayed on the terminal
 
-•	For eg, java -jar umlparser.jar class /Users/janalbhandari/Documents/202/My_Project/Test_Cases/uml-parser-test-5/ /Users/janalbhandari/Documents/202/My_Project/Sample/output/test5
+•	For eg, 
+
+          java -jar umlparser.jar class /Users/janalbhandari/Documents/202/My_Project/Test_Cases/uml-parser-test-5/ /Users/janalbhandari/Documents/202/My_Project/Sample/output/test5
