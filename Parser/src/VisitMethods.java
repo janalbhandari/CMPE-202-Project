@@ -102,10 +102,5 @@ public class VisitMethods extends VoidVisitorAdapter<Void> {
             //p.umlString+= "}\n\n";
        }
 
-
-		
-        
-        
- 		
         
 }
