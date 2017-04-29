@@ -2,19 +2,35 @@
 import java.util.ArrayList;
 
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class VisitClasses extends VoidVisitorAdapter<Void> {
 	
+	static ArrayList<String> classes = new ArrayList<String>();
+	static String allClasses;
 	static ArrayList<String> interfacesList = new ArrayList<String>();
 	static ArrayList<String> extendsList = new ArrayList<String>();	
 	static ArrayList<String> implementsList = new ArrayList<String>();
 	static String iName;
+	static MethodDeclaration m;
 
 	public void visit(ClassOrInterfaceDeclaration n, Void arg) {
 		// TODO Auto-generated method stub
 		
 		Parser p = new Parser();
+		
+		classes.add(n.getName().toString().replaceAll("\\[|\\]", ""));
+		
+		for(int i = 0; i<classes.size(); i++)
+		{
+			allClasses = classes.get(i).toString();
+		}
+		
+		//System.out.println(allClasses);
+		
+		
+		
 		
 		if(n.isInterface()){
 			
@@ -61,14 +77,9 @@ public class VisitClasses extends VoidVisitorAdapter<Void> {
 		
 		
 		super.visit(n, arg);
+		
+		
 	}
 	
 	
-	
-	
-	
 }
-	
-	
-
-
