@@ -53,7 +53,7 @@ public class Parser {
 	 	
 		System.out.println("\n\n");
 	 	
-		appendToClassString += "@startuml\n";
+		appendToClassString += "@startuml\nskinparam classAttributeIconSize 0\n\n";
 		
 		/*if(args[0].equals("class"))
 	 	{
@@ -70,7 +70,7 @@ public class Parser {
 		//System.out.println(appendToClassString);
 		appendToClassString += "@enduml";
 		
-		//ImageGenerator(outputFileName);
+		ImageGenerator(outputFileName);
 		System.out.println("\n\n");
 		
 		
@@ -131,7 +131,7 @@ public class Parser {
 					
 					//System.out.println("___");
 					//System.out.println(className);
-					umlString += "skinparam classAttributeIconSize 0\n\n";
+					
 					
 					
 					try {
