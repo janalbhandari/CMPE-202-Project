@@ -11,6 +11,7 @@ public class VisitMethods extends VoidVisitorAdapter<Void> {
 	static ArrayList<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
 	static ArrayList<String> methodNames = new ArrayList<String>();
 	static String totalMethods;
+	static String rel;
 	
 	
         @Override
@@ -21,8 +22,14 @@ public class VisitMethods extends VoidVisitorAdapter<Void> {
         	String modifier = null;
         	
         	Parser p = new Parser();
+        	VisitClasses vc = new VisitClasses();
         	
-        
+        	totalMethods = n.getName().toString();
+        	rel = totalMethods  + vc.allClasses;
+        	
+        	
+        	
+        	
         	//p.umlString += "Class " + p.cName + "{\n";
         	//System.out.println(p.cName + " ------ " + n.getName().toString());
         	//System.out.println(methodNames);
@@ -34,6 +41,7 @@ public class VisitMethods extends VoidVisitorAdapter<Void> {
     				p.umlString += "";
     			}
     			
+    			
     			else if(n.getParameters() != null){
     				
     				//System.out.println(n.getName() + " has parameters : " + n.getParameters().toString() + "\n\n");
@@ -41,7 +49,7 @@ public class VisitMethods extends VoidVisitorAdapter<Void> {
     				String method_params = n.getParameters().toString().replaceAll("\\[|\\]", "");
     				String[] tokens = method_params.split(" ");
     				
-    				p.umlString += modifier + n.getName().toString() + "(" + tokens[1] + " : " + tokens[0] + ")" + "\n";
+    				p.umlString += modifier + n.getName().toString() + "(" + tokens[1] + " : " + tokens[0] + ")" + n.getType().toString() + "\n";
     				
     			}
     			
@@ -73,7 +81,7 @@ public class VisitMethods extends VoidVisitorAdapter<Void> {
     				String method_params = n.getParameters().toString().replaceAll("\\[|\\]", "");
     				String[] tokens = method_params.split(" ");
     				
-    				p.umlString += modifier + n.getName().toString() + "(" + tokens[1] + " : " + tokens[0] + ")" + "\n";
+    				p.umlString += "+" + n.getName().toString() + "(" + tokens[1] + " : " + tokens[0] + ")" + n.getType().toString() + "\n";
     			}
     			
     			else
@@ -102,5 +110,10 @@ public class VisitMethods extends VoidVisitorAdapter<Void> {
             //p.umlString+= "}\n\n";
        }
 
+
+		
+        
+        
+ 		
         
 }
