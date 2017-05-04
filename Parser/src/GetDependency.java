@@ -25,67 +25,6 @@ public class GetDependency extends VoidVisitorAdapter<Void> {
 	
 	Parser p = new Parser();
 	
-
-	@Override
-	public void visit(ClassOrInterfaceDeclaration n, Void arg){
-		
-		classes.add(n.getName().toString().replaceAll("\\[|\\]", ""));
-		
-		for(int i = 0; i<classes.size(); i++)
-		{
-			allClasses = classes.get(i).toString();
-		}
-		
-		System.out.println(allClasses);
-		
-	}
-	
-	
-	@Override
-	public void visit(MethodDeclaration n, Void arg){
-		
-		VisitClasses vc = new VisitClasses();
-		
-
-		for(int i = 0; i<vc.classes.size(); i++)
-		{
-			allClasses = vc.classes.get(i).toString();
-		}
-		
-		System.out.println(allClasses);
-		
-		if(n.getParameters() != null){
-			
-			methods.add(n.getName());
-			//System.out.println(methods);
-			String method_params = n.getParameters().toString().replaceAll("\\[|\\]", "");
-			String[] tokens = method_params.split(" ");
-			// ..>
-			
-			/*if(tokens[0] == classes.toArray(class_names).toString()){
-				System.out.println(tokens[0] + " == " + n.getName());
-				
-			}*/
-			
-			
-			
-			/*for(int i=0; i<tokens_names; i++){
-				
-				if(tokens_names[i] == tokens[0]){
-					System.out.println(tokens[0] + " == " + tokens_names[i]);
-				}
-					
-			}*/
-			
-			
-			//p.umlString += modifier + n.getName().toString() + "(" + tokens[1] + " : " + tokens[0] + ")" + "\n";
-		}
-		
-	}
-	
-	
-	
-	
 	@Override
 	public void visit(FieldDeclaration n, Void arg){
 		
@@ -97,13 +36,62 @@ public class GetDependency extends VoidVisitorAdapter<Void> {
 				
 				String otherClass = n.getType().toString().substring(11, n.getType().toString().length()-1);
 				
-					p.umlString +=p.cName + " ..> " + otherClass + "\n";
+				//Class01 "1" -- "many" Class02
+				
+					p.umlString += p.cName + " ..> " + otherClass + "\n";
+					p.umlString += p.cName + "  -- \"*\" " + otherClass + "\n";
+				
+				}
+
+		}
+		
+
+		if(n.getModifiers() == ModifierSet.PUBLIC)
+		{
+			//System.out.println(n.getType() + "   belongs to   " + p.cName);
+			
+			if(n.getType().toString().contains("Collection")){
+				
+				String otherClass = n.getType().toString().substring(11, n.getType().toString().length()-1);
+				
+				//Class01 "1" -- "many" Class02
+				
+					p.umlString += p.cName + " ..> " + otherClass + "\n";
+					p.umlString += p.cName + "  -- \"*\" " + otherClass + "\n";
 				
 				}
 
 		}
 	}
 	
+	
+	@Override
+	public void visit(MethodDeclaration n, Void arg){
+		
+		VisitClasses vc = new VisitClasses();
+		
+		
+		if(n.getParameters() != null){
+			
+			methods.add(n.getName());
+			//System.out.println(methods);
+			String method_params = n.getParameters().toString().replaceAll("\\[|\\]", "");
+			String[] tokens = method_params.split(" ");
+			// ..>
+			
+			//System.out.println(p.cName);
+			
+			/*if(tokens[0].equals(classes.toArray(class_names).toString())){
+				System.out.println(tokens[0] + " == " + n.getName());
+				
+			}*/
+			
+			
+			
+			//p.umlString += modifier + n.getName().toString() + "(" + tokens[1] + " : " + tokens[0] + ")" + "\n";
+		}
+		
+	}
 	
 }
 
