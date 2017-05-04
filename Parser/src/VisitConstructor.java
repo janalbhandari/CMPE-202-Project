@@ -15,7 +15,21 @@ public class VisitConstructor extends VoidVisitorAdapter<Void> {
 		
 		if(n.getModifiers() == ModifierSet.PUBLIC){
 			modifier = "+";
-			p.umlString += modifier + n.getName().toString() + "() " + "\n";
+			
+			if(n.getParameters() != null){
+				
+				//System.out.println(n.getName() + " has parameters : " + n.getParameters().toString() + "\n\n");
+				
+				String method_params = n.getParameters().toString().replaceAll("\\[|\\]", "");
+				String[] tokens = method_params.split(" ");
+				
+				p.umlString += modifier + n.getName().toString() + "(" + tokens[1] + " : " + tokens[0] + ")" + "\n";
+				
+			}
+			else
+				{
+					p.umlString += modifier + n.getName().toString() + "() " + "\n";
+				}
 		}
 		else if(n.getModifiers() == ModifierSet.PRIVATE)
 		{
