@@ -13,21 +13,19 @@ public class VisitClasses extends VoidVisitorAdapter<Void> {
 	static ArrayList<String> extendsList = new ArrayList<String>();	
 	static ArrayList<String> implementsList = new ArrayList<String>();
 	static String iName;
+	static String totalImplements;
 	static MethodDeclaration m;
+	static String x;
 
 	public void visit(ClassOrInterfaceDeclaration n, Void arg) {
 		// TODO Auto-generated method stub
 		
 		Parser p = new Parser();
+		VisitMethods vm = new VisitMethods();
 		
-		classes.add(n.getName().toString().replaceAll("\\[|\\]", ""));
-		
-		for(int i = 0; i<classes.size(); i++)
-		{
-			allClasses = classes.get(i).toString();
-		}
-		
+		allClasses = n.getName().toString();
 		//System.out.println(allClasses);
+		
 		
 		
 		
@@ -63,8 +61,8 @@ public class VisitClasses extends VoidVisitorAdapter<Void> {
 			p.umlString += "class " + n.getName() + "{\n";
 			//System.out.println(n.getName().toString() + " " + n.getImplements().toString().replaceAll("\\[|\\]", ""));
 			
-			implementsList.add(n.getImplements().toString());
-			//System.out.println("\n\n IMPLEMENTS \n" + n.getName() +   implementsList);
+			
+			
 		}
 		
 		else
@@ -75,11 +73,14 @@ public class VisitClasses extends VoidVisitorAdapter<Void> {
 		//System.out.println("\n\n INTERFACES \n" + n.getName() + interfacesList + "\n\n EXTENDS \n" + n.getName() +   extendsList + "\n\n IMPLEMENTS \n" + n.getName() +   implementsList);
 		
 		
-		
+		//System.out.println(totalImplements);
 		super.visit(n, arg);
-		
 		
 	}
 	
 	
 }
+	
+	
+
+
